@@ -32,7 +32,18 @@ const trabajadorSchema = new mongoose.Schema(
         tipo_trabajador: {
             type: String,
             required: true,
-        }
+        },email: {
+            type: String,
+            required: true,
+        },
+        password: {
+            type: String,
+            required: true,
+        },
+        role: {
+            type: String,
+            default: "trabajador",
+          },
     },
     { timestamps: true }
 )

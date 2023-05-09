@@ -1,14 +1,24 @@
 
 import Trabajador from "../models/Trabajador.js";
-
+import bcrypt from 'bcryptjs'
+import jwt from 'jsonwebtoken'
 
 //register trabajador
 
 export const createTrabajador = async(req, res)=>{
+
+    const salt = bcrypt.genSaltSync(10)
+    const hash = bcrypt.hashSync(req.body.password, salt)
+
     const newTrabajador = new Trabajador(req.body)
+      console.log(newTrabajador.nombre)
 
     try {
+    
         const savedTrabajador = await newTrabajador.save()
+
+        savedTrabajador.password = hash
+        await savedTrabajador.save()
         res.status(200).json({success:true,message:"Successfully created",data:savedTrabajador})
     } catch (error) {
         res.status(500).json({success:false,message:"Failed to create. Try again"})

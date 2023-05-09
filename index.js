@@ -5,7 +5,7 @@ import cors from 'cors'
 import cookieParser from 'cookie-parser'
 
 
-
+import authRoute from './routes/auth.js'
 import trabajadorRouter from './routes/trabajadores.js'
 
 dotenv.config()
@@ -40,7 +40,7 @@ app.use(express.json())
 app.use(cors(corsOptions))
 app.use(cookieParser())
 
-
+app.use('/auth', authRoute)
 app.use('/trabajadores', trabajadorRouter)
 
 
