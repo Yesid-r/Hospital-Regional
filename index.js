@@ -16,10 +16,6 @@ const corsOptions = {
     credentials:true
 }
 
-// testing
-//app.get('/' , (req,res)=>{
-  //  res.send("api is working")
-///})
 
 // database connection
 mongoose.set('strictQuery', false)
